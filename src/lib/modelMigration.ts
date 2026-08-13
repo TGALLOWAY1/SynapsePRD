@@ -6,23 +6,25 @@
  * is wrapped in try/catch because localStorage throws in private-browsing modes.
  */
 
-const LATEST_FLASH_MODEL = 'gemini-3.6-flash';
+const LATEST_FLASH_MODEL = 'gemini-3.7-flash';
 
-// Flash model IDs that predate the GA 3.6 Flash default. Users sitting on one
+// Flash model IDs that predate the GA 3.7 Flash default. Users sitting on one
 // of these (whether as their primary or fast-tier selection) are moved forward;
 // Pro and Flash-Lite selections are intentionally left untouched.
 const SUPERSEDED_FLASH_MODELS = new Set([
+    'gemini-3.6-flash',
     'gemini-3.5-flash',
     'gemini-3-flash-preview',
     'gemini-2.5-flash',
 ]);
 
 // Bumped per migration wave (2026_05 moved pre-3.5 selections to 3.5 Flash;
-// 2026_07 moves pre-3.6 selections, including 3.5 Flash, to 3.6 Flash).
-const FLASH_MIGRATION_KEY = 'GEMINI_MODEL_MIGRATED_2026_07';
+// 2026_07 moved pre-3.6 selections to 3.6 Flash; 2026_08 moves pre-3.7
+// selections, including 3.6 Flash, to 3.7 Flash).
+const FLASH_MIGRATION_KEY = 'GEMINI_MODEL_MIGRATED_2026_08';
 
 /**
- * Move anyone whose stored Flash selection predates 3.6 Flash up to the new
+ * Move anyone whose stored Flash selection predates 3.7 Flash up to the new
  * GA default. Applies to both `GEMINI_MODEL` (primary) and `GEMINI_FAST_MODEL`
  * (fast tier used for simpler PRD sections).
  */
